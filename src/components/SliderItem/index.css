@@ -1,0 +1,42 @@
+.slider-item-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Roboto';
+}
+
+.slider-image {
+  width: 230px;
+  height: 150px;
+}
+.slider-book-title {
+  font-size: 16px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px;
+  color: #334155;
+}
+.slider-book-author {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #475569;
+}
+@media screen and (max-width: 576px) {
+  .slider-image {
+    width: 250px;
+    height: 200px;
+  }
+  .slider-book-title {
+    font-size: 15px;
+    line-height: 22px;
+    padding-top: 4px;
+  }
+  .slider-book-author {
+    font-size: 12px;
+    line-height: 14px;
+  }
+}

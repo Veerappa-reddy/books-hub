@@ -1,0 +1,25 @@
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.icons-container {
+  display: flex;
+}
+.footer-icon {
+  margin: 11px;
+  color: #3d3c3c;
+  margin-bottom: 5px;
+}
+.contact-us {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: #3d3c3c;
+}
+@media screen and (max-width: 576px) {
+  .footer-container {
+    left: 33%;
+  }
+}

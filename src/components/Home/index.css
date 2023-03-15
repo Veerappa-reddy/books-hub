@@ -1,0 +1,120 @@
+.home-container {
+  background-color: #f8fafc;
+  height: 100vh;
+}
+.home-page-text-container {
+  margin: 30px 60px;
+  font-family: 'Roboto';
+}
+.home-heading {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 550;
+  font-size: 30px;
+  line-height: 32px;
+}
+.home-paragraph {
+  font-weight: 400;
+  padding-top: 10px;
+  line-height: 25px;
+}
+.top-rated-books-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 35px 0px;
+  padding: 25px 40px;
+  box-shadow: 0px 0px 1px rgba(40, 41, 61, 0.08),
+    0px 1px 2px rgba(96, 97, 112, 0.16);
+  border-radius: 16px;
+}
+.find-books-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 19px;
+}
+.find-books-button {
+  padding: 8px 10px;
+  background-color: #0284c7;
+  color: #f8fafc;
+  border: none;
+  font-family: 'Inter';
+  align-self: flex-start;
+  border-radius: 2px;
+  font-size: 10px;
+}
+.mobile-device-button {
+  display: none;
+}
+.large-device-button {
+  display: block;
+}
+.slick-prev:before,
+.slick-next:before {
+  color: #989898;
+  border-radius: 12px;
+  transform: rotate(180deg);
+}
+
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+}
+.slider-un-orderlist {
+  list-style-type: none;
+  margin-top: 15px;
+}
+.top-rated-books-heading {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  color: #1e293b;
+}
+@media screen and (max-width: 576px) {
+  .home-heading {
+    font-size: 24px;
+    text-align: center;
+    color: #1e293b;
+  }
+  .home-paragraph {
+    font-size: 16px;
+    color: #475569;
+    font-weight: 500;
+    padding: 10px 29px;
+    line-height: 20px;
+  }
+  .mobile-device-button {
+    display: block;
+    margin-top: 10px;
+    padding: 10px 14px;
+    font-size: 12px;
+    margin-left: 28px;
+  }
+  .large-device-button {
+    display: none;
+  }
+  .top-rated-books-heading {
+    font-size: 22px;
+    color: #1e293b;
+    font-weight: 650;
+    padding-left: 80px;
+  }
+  .top-rated-books-container {
+    border-radius: 0px;
+    margin: 50px 0px;
+    padding: 20px 8px;
+    /* margin-bottom: 30px; */
+  }
+  .home-page-text-container {
+    margin: 30px 0px;
+  }
+  .slider-un-orderlist {
+    padding: 0px 20px;
+  }
+}
