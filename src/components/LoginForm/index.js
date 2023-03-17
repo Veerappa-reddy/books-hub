@@ -68,7 +68,7 @@ class LoginForm extends Component {
                 type="text"
                 id="username"
                 onChange={this.onChangeUsername}
-                className="input-element"
+                className="login-input-element"
               />
             </div>
             <div className="password-container">
@@ -79,7 +79,7 @@ class LoginForm extends Component {
                 type="password"
                 id="password"
                 onChange={this.onChangePassword}
-                className="input-element"
+                className="login-input-element"
               />
               {errorMsgStatus && <p className="error-msg">{errorMsg}</p>}
             </div>

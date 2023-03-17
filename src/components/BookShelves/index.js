@@ -1,7 +1,7 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
-import {AiOutlineSearch} from 'react-icons/ai'
+import {BsSearch} from 'react-icons/bs'
 import Header from '../Header'
 import BookItem from '../BookItem'
 import './index.css'
@@ -42,7 +42,9 @@ class BookShelves extends Component {
     booksList: [],
     apiStatus: apiStatusConstants.initial,
     searchText: '',
-    bookshelfName: bookshelvesList[0].label,
+    bookshelfName: bookshelvesList[0].value,
+    displayLabel: bookshelvesList[0].label,
+    activeStatusId: bookshelvesList[0].id,
   }
 
   componentDidMount() {
@@ -82,13 +84,17 @@ class BookShelves extends Component {
     }
   }
 
+  tryAgain = () => {
+    this.getBooksData()
+  }
+
   onChangeSearchText = event => {
     this.setState({searchText: event.target.value})
   }
 
   renderBooksView = () => {
-    const {booksList} = this.state
-    return (
+    const {booksList, searchText} = this.state
+    return booksList.length > 0 ? (
       <>
         <ul className="books-container">
           {booksList.map(book => (
@@ -97,6 +103,17 @@ class BookShelves extends Component {
         </ul>
         <Footer />
       </>
+    ) : (
+      <div className="no-results-container">
+        <img
+          src="https://res.cloudinary.com/veerappa/image/upload/v1678942046/no_reslts_svg_hdmj6d.svg"
+          alt="no books"
+          className="no-results-img"
+        />
+        <p className="no-result-text">
+          Your search for {searchText} did not find any matches.
+        </p>
+      </div>
     )
   }
 
@@ -110,18 +127,21 @@ class BookShelves extends Component {
     <div className="failue-container">
       <img
         src="https://res.cloudinary.com/veerappa/image/upload/v1678873573/failure_img_gq42aw.svg"
-        alt="failure"
+        alt="failure view"
         className="failure-image"
       />
       <p className="failure-text">Something went wrong, Please try again</p>
-      <button type="button" className="try-again-btn">
-        Try again
+      <button type="button" className="try-again-btn" onClick={this.tryAgain}>
+        Try Again
       </button>
     </div>
   )
 
-  clickBookShelve = label => {
-    this.setState({bookshelfName: label}, this.getBooksData)
+  clickBookShelve = (id, label, value) => {
+    this.setState(
+      {bookshelfName: value, activeStatusId: id, displayLabel: label},
+      this.getBooksData,
+    )
   }
 
   searchResults = () => {
@@ -150,11 +170,41 @@ class BookShelves extends Component {
   }
 
   render() {
-    const {bookshelfName} = this.state
+    const {displayLabel, activeStatusId} = this.state
 
     return (
       <div className="bookshelves-container">
         <Header />
+        <div className="mobile-bookshelves-container">
+          <div className="mobile-input-container">
+            <input
+              type="search"
+              className="input-element mobile-input"
+              placeholder="Search"
+              onChange={this.onChangeSearchText}
+              onKeyDown={this.onEnterSearchText}
+            />
+            <button
+              type="button"
+              className="search-icon-container"
+              onClick={this.searchResults}
+              testid="searchButton"
+            >
+              <BsSearch color="#94A3B8" />
+            </button>
+          </div>
+          <h1 className="mobile-bookshelve-heading">Bookshelves</h1>
+          <ul className="mobile-shelves-list">
+            {bookshelvesList.map(each => (
+              <MobileShelveItem
+                each={each}
+                key={each.id}
+                clickBookShelve={this.clickBookShelve}
+                isActive={each.id === activeStatusId}
+              />
+            ))}
+          </ul>
+        </div>
         <div className="bookshelves-bg-container">
           <ul className="bookshelves-list-container">
             <h1 className="bookshelve-heading">Bookshelves</h1>
@@ -163,12 +213,13 @@ class BookShelves extends Component {
                 each={each}
                 key={each.id}
                 clickBookShelve={this.clickBookShelve}
+                isActive={each.id === activeStatusId}
               />
             ))}
           </ul>
           <div className="search-books-container">
             <div className="search-text-container">
-              <h1 className="search-books-heading">{bookshelfName} Books</h1>
+              <h1 className="search-books-heading">{displayLabel} Books</h1>
               <div className="input-container">
                 <input
                   type="search"
@@ -181,8 +232,9 @@ class BookShelves extends Component {
                   type="button"
                   className="search-icon-container"
                   onClick={this.searchResults}
+                  testid="searchButton"
                 >
-                  <AiOutlineSearch color="#94A3B8" />
+                  <BsSearch color="#94A3B8" />
                 </button>
               </div>
             </div>
@@ -197,22 +249,68 @@ class BookShelves extends Component {
 export default BookShelves
 
 const ShelveItem = props => {
-  const {each, clickBookShelve} = props
-  const {label, value} = each
+  const {each, clickBookShelve, isActive} = props
+  const {id, label, value} = each
 
   const bookShelveOption = () => {
-    clickBookShelve(label)
+    clickBookShelve(id, label, value)
   }
+
+  const shelfOption = isActive ? 'active-option' : 'book-shelve-button'
 
   return (
     <li className="shelve-item">
-      <button
-        type="button"
-        className="book-shelve-button"
-        onClick={bookShelveOption}
-      >
+      <button type="button" className={shelfOption} onClick={bookShelveOption}>
         {label}
       </button>
     </li>
   )
 }
+
+const MobileShelveItem = props => {
+  const {each, clickBookShelve, isActive} = props
+  const {id, label, value} = each
+
+  const bookShelveOption = () => {
+    clickBookShelve(id, label, value)
+  }
+
+  const shelfOption = isActive ? 'active-option' : 'book-shelve-button'
+
+  return (
+    <li className="mobile-shelve-item">
+      <button type="button" className={shelfOption} onClick={bookShelveOption}>
+        {label}
+      </button>
+    </li>
+  )
+}
+
+/* <div className="mobile-input-container">
+          <input
+            type="search"
+            className="input-element mobile-input"
+            placeholder="Search"
+            onChange={this.onChangeSearchText}
+            onKeyDown={this.onEnterSearchText}
+          />
+          <button
+            type="button"
+            className="search-icon-container"
+            onClick={this.searchResults}
+            testid="searchButton"
+          >
+            <BsSearch color="#94A3B8" />
+          </button>
+        </div>
+        <h1 className="mobile-bookshelve-heading">Bookshelves</h1>
+        <ul className="mobile-shelves-list">
+          {bookshelvesList.map(each => (
+            <MobileShelveItem
+              each={each}
+              key={each.id}
+              clickBookShelve={this.clickBookShelve}
+              isActive={each.id === activeStatusId}
+            />
+          ))}
+        </ul> */

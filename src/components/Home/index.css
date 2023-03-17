@@ -1,6 +1,6 @@
 .home-container {
   background-color: #f8fafc;
-  height: 100vh;
+  min-height: 100vh;
 }
 .home-page-text-container {
   margin: 30px 60px;
@@ -76,19 +76,23 @@
   line-height: 32px;
   color: #1e293b;
 }
+.home-link {
+  text-decoration: none;
+}
 @media screen and (max-width: 576px) {
   .home-heading {
     font-size: 24px;
-    text-align: center;
+    padding-left: 27px;
     color: #1e293b;
   }
   .home-paragraph {
     font-size: 16px;
     color: #475569;
     font-weight: 500;
-    padding: 10px 29px;
+    padding: 10px 27px;
     line-height: 20px;
   }
+
   .mobile-device-button {
     display: block;
     margin-top: 10px;

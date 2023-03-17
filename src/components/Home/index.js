@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
+import {Link} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
@@ -35,19 +36,22 @@ class Home extends Component {
       },
     }
     const response = await fetch(url, options)
-    const data = await response.json()
-    console.log(data)
+    if (response.ok === true) {
+      const data = await response.json()
 
-    const updatedData = data.books.map(each => ({
-      authorName: each.author_name,
-      coverPic: each.cover_pic,
-      id: each.id,
-      title: each.title,
-    }))
-    this.setState({
-      topRatedBooksList: updatedData,
-      apiStatus: apiStatusConstants.success,
-    })
+      const updatedData = data.books.map(each => ({
+        authorName: each.author_name,
+        coverPic: each.cover_pic,
+        id: each.id,
+        title: each.title,
+      }))
+      this.setState({
+        topRatedBooksList: updatedData,
+        apiStatus: apiStatusConstants.success,
+      })
+    } else {
+      this.setState({apiStatus: apiStatusConstants.failure})
+    }
   }
 
   renderTopRatedBooksView = () => {
@@ -104,6 +108,24 @@ class Home extends Component {
     </div>
   )
 
+  tryAgain = () => {
+    this.getTopRatedBooksData()
+  }
+
+  renderFailureView = () => (
+    <div className="failue-container">
+      <img
+        src="https://res.cloudinary.com/veerappa/image/upload/v1678873573/failure_img_gq42aw.svg"
+        alt="failure view"
+        className="failure-image"
+      />
+      <p className="failure-text">Something went wrong, Please try again</p>
+      <button type="button" className="try-again-btn" onClick={this.tryAgain}>
+        Try again
+      </button>
+    </div>
+  )
+
   renderApiStatus = () => {
     const {apiStatus} = this.state
 
@@ -120,6 +142,9 @@ class Home extends Component {
   }
 
   render() {
+    const {apiStatus} = this.state
+    console.log(apiStatus)
+
     return (
       <div className="home-container">
         <Header />
@@ -130,21 +155,25 @@ class Home extends Component {
             enjoyed in the past,and you will give you surprisingly insightful
             recommandations.
           </p>
-          <button
-            type="button"
-            className="find-books-button mobile-device-button"
-          >
-            Find Books
-          </button>
+          <Link to="/shelf" className="home-link">
+            <button
+              type="button"
+              className="find-books-button mobile-device-button"
+            >
+              Find Books
+            </button>
+          </Link>
           <div className="top-rated-books-container">
             <div className="find-books-container">
               <h1 className="top-rated-books-heading">Top Rated Books</h1>
-              <button
-                type="button"
-                className="find-books-button large-device-button"
-              >
-                Find Books
-              </button>
+              <Link to="/shelf" className="home-link">
+                <button
+                  type="button"
+                  className="find-books-button large-device-button"
+                >
+                  Find Books
+                </button>
+              </Link>
             </div>
             {this.renderApiStatus()}
           </div>

@@ -1,0 +1,51 @@
+.fav-books-main-container {
+  height: 100vh;
+  background-color: #f8fafc;
+}
+.no-fav-books-container {
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.no-fav-books {
+  width: 350px;
+}
+.no-fav-heading {
+  font-size: 28px;
+  padding: 10px;
+  color: #334155;
+  font-weight: 500;
+}
+.no-fav-p {
+  font-size: 18px;
+  font-family: 'Roboto';
+  color: #475569;
+}
+.go-books-btn {
+  background-color: #0284c7;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Roboto';
+  margin-top: 10px;
+}
+.fav-books-container {
+  display: flex;
+  padding: 40px;
+}
+.fav-books-show-container {
+  flex-grow: 1;
+  width: 60%;
+  margin-left: 3%;
+}
+.fav-un-orderlist {
+  display: flex;
+  flex-wrap: wrap;
+}
+.favourite-books-heading {
+  color: #64748b;
+  padding-left: 20px;
+}
