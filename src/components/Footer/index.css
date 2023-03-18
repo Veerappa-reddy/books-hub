@@ -1,8 +1,13 @@
+body {
+  min-height: 100vh;
+}
 .footer-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: sticky;
+  top: 75%;
 }
 .icons-container {
   display: flex;
@@ -21,5 +26,7 @@
 @media screen and (max-width: 576px) {
   .footer-container {
     left: 33%;
+    position: sticky;
+    top: 100%;
   }
 }

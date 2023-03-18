@@ -94,11 +94,12 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 12px;
   line-height: 32px;
   color: #475569;
   display: flex;
   align-items: center;
+  margin-right: 10px;
 }
 .fav {
   margin-left: 10px;
@@ -106,7 +107,8 @@
 }
 .no-fav {
   margin-left: 10px;
-  color: #475569;
+  color: #fff;
+  border: 1px solid #475569;
 }
 @media screen and (max-width: 576px) {
   .bookdetails-container {

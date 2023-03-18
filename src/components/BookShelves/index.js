@@ -285,32 +285,3 @@ const MobileShelveItem = props => {
     </li>
   )
 }
-
-/* <div className="mobile-input-container">
-          <input
-            type="search"
-            className="input-element mobile-input"
-            placeholder="Search"
-            onChange={this.onChangeSearchText}
-            onKeyDown={this.onEnterSearchText}
-          />
-          <button
-            type="button"
-            className="search-icon-container"
-            onClick={this.searchResults}
-            testid="searchButton"
-          >
-            <BsSearch color="#94A3B8" />
-          </button>
-        </div>
-        <h1 className="mobile-bookshelve-heading">Bookshelves</h1>
-        <ul className="mobile-shelves-list">
-          {bookshelvesList.map(each => (
-            <MobileShelveItem
-              each={each}
-              key={each.id}
-              clickBookShelve={this.clickBookShelve}
-              isActive={each.id === activeStatusId}
-            />
-          ))}
-        </ul> */

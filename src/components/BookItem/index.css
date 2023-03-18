@@ -1,6 +1,6 @@
 .book-item-container {
   display: flex;
-
+  width: 47%;
   margin: 13px;
 }
 .book-item-details-container {
@@ -54,25 +54,27 @@
 }
 .book-item-link {
   text-decoration: none;
-  width: 47%;
-  /* margin: 0px;
-  padding: 0px; */
+}
+.fav-icon-btn {
+  margin-left: 10px;
+  width: 20px;
+  height: 20px;
 }
 .read-status {
   color: #0284c7;
 }
 @media screen and (max-width: 576px) {
-  .book-item-link {
-    width: 100%;
-  }
   .book-image {
-    width: 50%;
+    width: 160px;
     height: 200px;
   }
   .book-item-container {
     margin: 7px 0px;
+    width: 100%;
+    padding-left: 10px;
   }
   .book-item-details-container {
     width: 50%;
+    margin-left: 15px;
   }
 }

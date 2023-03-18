@@ -6,7 +6,13 @@ import {AiFillCloseCircle} from 'react-icons/ai'
 import './index.css'
 
 class Header extends Component {
-  state = {showMenu: false}
+  constructor(props) {
+    super(props)
+
+    const {match} = this.props
+    const {path} = match
+    this.state = {activePath: path, showMenu: false}
+  }
 
   onLogout = () => {
     const {history} = this.props
@@ -23,8 +29,7 @@ class Header extends Component {
   }
 
   render() {
-    const {showMenu} = this.state
-    console.log(showMenu)
+    const {showMenu, activePath} = this.state
 
     return (
       <>
@@ -38,13 +43,33 @@ class Header extends Component {
           </Link>
           <ul className="header-unorderlist">
             <Link to="/" className="nav-link">
-              <li className="header-list-item">Home</li>
+              <li
+                className={
+                  activePath === '/' ? 'path-color' : 'header-list-item'
+                }
+              >
+                Home
+              </li>
             </Link>
             <Link to="/shelf" className="nav-link">
-              <li className="header-list-item">Booksheleves</li>
+              <li
+                className={
+                  activePath === '/shelf' ? 'path-color' : 'header-list-item'
+                }
+              >
+                Bookshelves
+              </li>
             </Link>
             <Link to="/favourites" className="nav-link">
-              <li className="header-list-item">Favourite Books</li>
+              <li
+                className={
+                  activePath === '/favourites'
+                    ? 'path-color'
+                    : 'header-list-item'
+                }
+              >
+                Favourite Books
+              </li>
             </Link>
             <li>
               <button
@@ -65,13 +90,37 @@ class Header extends Component {
         {showMenu && (
           <ul className="mobile-header-unorderlist">
             <Link to="/" className="nav-link">
-              <li className="mobile-header-list-item">Home</li>
+              <li
+                className={
+                  activePath === '/'
+                    ? 'mobile-path-color'
+                    : 'mobile-header-list-item'
+                }
+              >
+                Home
+              </li>
             </Link>
             <Link to="/shelf" className="nav-link">
-              <li className="mobile-header-list-item">Booksheleves</li>
+              <li
+                className={
+                  activePath === '/shelf'
+                    ? 'mobile-path-color'
+                    : 'mobile-header-list-item'
+                }
+              >
+                Bookshelves
+              </li>
             </Link>
             <Link to="/favourites" className="nav-link">
-              <li className="mobile-header-list-item">Favourite Books</li>
+              <li
+                className={
+                  activePath === '/favourites'
+                    ? 'mobile-path-color'
+                    : 'mobile-header-list-item'
+                }
+              >
+                Favourite Books
+              </li>
             </Link>
             <li>
               <button

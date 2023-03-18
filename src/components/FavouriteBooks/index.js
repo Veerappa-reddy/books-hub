@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom'
-import {BsFillStarFill} from 'react-icons/bs'
 import FavouriteBooksContext from '../../context/FavouriteBooksContext'
 import Header from '../Header'
+import BookItem from '../BookItem'
 import './index.css'
 
 const FavouriteBooks = () => (
@@ -18,7 +18,7 @@ const FavouriteBooks = () => (
               {favouriteBooksList.length > 0 ? (
                 <ul className="fav-un-orderlist">
                   {favouriteBooksList.map(each => (
-                    <FavouriteBookItem each={each} />
+                    <BookItem each={each} />
                   ))}
                 </ul>
               ) : (
@@ -48,25 +48,3 @@ const FavouriteBooks = () => (
 )
 
 export default FavouriteBooks
-
-const FavouriteBookItem = props => {
-  const {each} = props
-  const {authorName, rating, id, coverPic, title, readStatus} = each
-  return (
-    <Link to={`/books/${id}`} className="book-item-link">
-      <li className="book-item-container">
-        <img src={coverPic} alt={title} className="book-image" />
-        <div className="book-item-details-container">
-          <h1 className="book-title">{title}</h1>
-          <p className="book-author">{authorName}</p>
-          <p className="avg-rating">
-            Avg Rating <BsFillStarFill color="#FBBF24" /> {rating}
-          </p>
-          <p className="status">
-            Status : <span className="read-status">{readStatus}</span>
-          </p>
-        </div>
-      </li>
-    </Link>
-  )
-}

@@ -134,7 +134,7 @@
   color: #334155;
 }
 .mobile-input {
-  width: ;
+  width: 280px;
 }
 .mobile-bookshelve-heading {
   display: none;
@@ -217,5 +217,14 @@
     margin: 0px;
     height: 100%;
     /* flex-grow: 0; */
+  }
+  .bookshelves-bg-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: 0px;
+  }
+  .loader-container {
+    margin-top: 0px;
   }
 }

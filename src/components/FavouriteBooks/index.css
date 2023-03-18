@@ -49,3 +49,33 @@
   color: #64748b;
   padding-left: 20px;
 }
+@media screen and (max-width: 576px) {
+  .fav-books-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+    padding-left: 20px;
+  }
+  .fav-books-show-container {
+    width: 100%;
+    margin-top: 5%;
+    margin-left: 0px;
+  }
+  .favourite-books-heading {
+    text-align: center;
+    align-self: center;
+  }
+  .no-fav-heading {
+    text-align: center;
+  }
+  .no-fav-books {
+    width: 310px;
+    margin-top: 0px;
+  }
+  .no-fav-heading {
+    font-size: 25px;
+  }
+  .no-fav-p {
+    text-align: center;
+  }
+}

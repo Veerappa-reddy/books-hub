@@ -63,7 +63,7 @@ class Home extends Component {
       slidesToShow: 4,
       slidesToScroll: 1,
       autoplay: true,
-      autoplaySpeed: 3000,
+      autoplaySpeed: 2000,
       pauseOnHover: true,
       swipeToSlide: true,
       responsive: [
