@@ -68,7 +68,7 @@ class Header extends Component {
                     : 'header-list-item'
                 }
               >
-                Favourite Books
+                Myfavourites
               </li>
             </Link>
             <li>
@@ -119,7 +119,7 @@ class Header extends Component {
                     : 'mobile-header-list-item'
                 }
               >
-                Favourite Books
+                Myfavourites
               </li>
             </Link>
             <li>

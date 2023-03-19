@@ -1,9 +1,12 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import {BsFillStarFill} from 'react-icons/bs'
+import {MdFavoriteBorder} from 'react-icons/md'
+import {FcLike} from 'react-icons/fc'
 import Loader from 'react-loader-spinner'
 import Header from '../Header'
 import Footer from '../Footer'
+import FavouriteBooksContext from '../../context/FavouriteBooksContext'
 import './index.css'
 
 const apiStatusConstants = {
@@ -17,6 +20,7 @@ class BookDetails extends Component {
   constructor(props) {
     super(props)
     this.state = {apiStatus: apiStatusConstants.initial, bookDetails: {}}
+    this.favourite = false
   }
 
   componentDidMount() {
@@ -72,38 +76,79 @@ class BookDetails extends Component {
       authorName,
       coverPic,
       rating,
+      id,
       readStatus,
       title,
     } = bookDetails
 
     return (
-      <div className="bookdetails-container">
-        <div className="bookitem-container">
-          <div className="item-info-container">
-            <img src={coverPic} alt={title} className="bookdetail-image" />
-            <div className="info-text-container">
-              <h1 className="bookdetail-heading">{title}</h1>
-              <p className="bookdetail-author">{authorName}</p>
-              <p className="bookdetail-rating">
-                Avg Rating <BsFillStarFill color="#FBBF24" /> {rating}
-              </p>
-              <p className="bookdetail-status">
-                Status: <span className="read-status">{readStatus}</span>
-              </p>
+      <FavouriteBooksContext.Consumer>
+        {value => {
+          const {favouriteBooksList, addToFavouriteBooks} = value
+
+          const addToFavourite = () => {
+            addToFavouriteBooks(bookDetails)
+          }
+
+          const favBook = favouriteBooksList.find(
+            eachBook => eachBook.id === id,
+          )
+
+          if (favBook !== undefined) {
+            this.favourite = true
+          } else {
+            this.favourite = false
+          }
+
+          const favIconColor = this.favourite ? (
+            <FcLike className="book-details-fav-icon-btn" />
+          ) : (
+            <MdFavoriteBorder
+              color="#475569"
+              className="book-details-fav-icon-btn"
+            />
+          )
+          return (
+            <div className="bookdetails-container">
+              <div className="bookitem-container">
+                <div className="item-info-container">
+                  <img
+                    src={coverPic}
+                    alt={title}
+                    className="bookdetail-image"
+                  />
+                  <div className="info-text-container">
+                    <h1 className="bookdetail-heading">{title}</h1>
+                    <p className="bookdetail-author">{authorName}</p>
+                    <p className="bookdetail-rating">
+                      Avg Rating <BsFillStarFill color="#FBBF24" /> {rating}
+                    </p>
+                    <p className="bookdetail-status">
+                      Status: <span className="read-status">{readStatus}</span>
+                    </p>
+                    <p
+                      className="book-details-add-fav-button"
+                      onClick={addToFavourite}
+                    >
+                      Myfavourite: {favIconColor}
+                    </p>
+                  </div>
+                </div>
+                <hr className="hr-line" />
+                <div className="about-container">
+                  <h1 className="about-author">About Author</h1>
+                  <p className="author-paragraph">{aboutAuthor}</p>
+                </div>
+                <div className="about-container">
+                  <h1 className="about-author">About Book</h1>
+                  <p className="author-paragraph">{aboutBook}</p>
+                </div>
+              </div>
+              <Footer />
             </div>
-          </div>
-          <hr className="hr-line" />
-          <div className="about-container">
-            <h1 className="about-author">About Author</h1>
-            <p className="author-paragraph">{aboutAuthor}</p>
-          </div>
-          <div className="about-container">
-            <h1 className="about-author">About Book</h1>
-            <p className="author-paragraph">{aboutBook}</p>
-          </div>
-        </div>
-        <Footer />
-      </div>
+          )
+        }}
+      </FavouriteBooksContext.Consumer>
     )
   }
 

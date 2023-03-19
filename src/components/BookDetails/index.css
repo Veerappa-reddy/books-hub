@@ -110,6 +110,22 @@
   color: #fff;
   border: 1px solid #475569;
 }
+.book-details-add-fav-button {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 32px;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+.book-details-fav-icon-btn {
+  margin-left: 10px;
+  width: 20px;
+  height: 20px;
+}
 @media screen and (max-width: 576px) {
   .bookdetails-container {
     padding: 30px 0px;

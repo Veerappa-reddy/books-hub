@@ -49,7 +49,7 @@ const BookItem = props => {
                 Status : <span className="read-status">{readStatus}</span>
               </p>
               <p className="add-fav-button" onClick={addToFavourite}>
-                Add to Favourite: {favIconColor}
+                Myfavourite: {favIconColor}
               </p>
             </div>
           </li>
